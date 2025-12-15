@@ -1,27 +1,34 @@
-import { TanStackDevtools } from '@tanstack/react-devtools'
+import { TanStackDevtools } from '@tanstack/react-devtools';
 import {
   HeadContent,
   Scripts,
-  createRootRouteWithContext,
-} from '@tanstack/react-router'
-import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
+  createRootRouteWithContext
+} from '@tanstack/react-router';
+import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
+import '../i18n/index';
+import TanStackQueryDevtools from '../integrations/tanstack-query/devtools';
 
-import TanStackQueryDevtools from '../integrations/tanstack-query/devtools'
+import StoreDevtools from '../lib/demo-store-devtools';
 
-import StoreDevtools from '../lib/demo-store-devtools'
+import AiDevtools from '../lib/ai-devtools';
 
-import AiDevtools from '../lib/ai-devtools'
+import appCss from '../styles.css?url';
 
-import appCss from '../styles.css?url'
-
-import Header from '@/domains/layout/components/Header'
-import type { QueryClient } from '@tanstack/react-query'
+import Header from '@/domains/layout/components/Header';
+import type { QueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+import { setSSRLangage } from '../i18n/index';
 
 interface MyRouterContext {
   queryClient: QueryClient
 }
 
 export const Route = createRootRouteWithContext<MyRouterContext>()({
+  beforeLoad: async ({context}) => {
+  
+    await setSSRLangage();
+    return  null;
+  },
   head: () => ({
     meta: [
       {
@@ -51,8 +58,10 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 })
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+  const {i18n} = useTranslation()
+  
   return (
-    <html lang="en">
+    <html lang={i18n.language}>
       <head>
         <HeadContent />
       </head>

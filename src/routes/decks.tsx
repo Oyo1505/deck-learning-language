@@ -1,24 +1,28 @@
+import i18n from '@/i18n'
 import { createFileRoute } from '@tanstack/react-router'
+import { useTranslation } from 'react-i18next'
+
 export const Route = createFileRoute('/decks')({
   head: () => ({
     meta: [
       {
-        title: 'Decks Page - Decks Learning Language',
-        name: 'List of Decks',
-        content:
-          'Explore our extensive collection of language learning decks designed to enhance your vocabulary and grammar skills. Each deck is curated to provide engaging and effective learning experiences.',
+        title: i18n.t('decks:metadata.title'),
+        name: i18n.t('decks:metadata.name'),
+        content: i18n.t('decks:metadata.content'),
       },
     ],
   }),
-  component: Decks,
+  component: RouteComponent,
 })
 
-function Decks() {
+function RouteComponent() {
+  const { t } = useTranslation('decks')
+  
   return (
-    <div>Decks Page
-      
+    <div>
+      {t('title')}
     </div>
   )
 }
 
-export default Decks
+export default RouteComponent
