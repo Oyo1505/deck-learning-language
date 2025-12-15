@@ -9,7 +9,11 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SignupRouteImport } from './routes/signup'
+import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as McpRouteImport } from './routes/mcp'
+import { Route as DecksRouteImport } from './routes/decks'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DemoTanstackQueryRouteImport } from './routes/demo/tanstack-query'
 import { Route as DemoTanchatRouteImport } from './routes/demo/tanchat'
@@ -19,7 +23,9 @@ import { Route as DemoPrismaRouteImport } from './routes/demo/prisma'
 import { Route as DemoMcpTodosRouteImport } from './routes/demo/mcp-todos'
 import { Route as DemoDbChatApiRouteImport } from './routes/demo/db-chat-api'
 import { Route as DemoDbChatRouteImport } from './routes/demo/db-chat'
+import { Route as DecksDecksIdRouteImport } from './routes/decks/$decksId'
 import { Route as ExampleGuitarsIndexRouteImport } from './routes/example.guitars/index'
+import { Route as DecksCreateIndexRouteImport } from './routes/decks/create/index'
 import { Route as ExampleGuitarsGuitarIdRouteImport } from './routes/example.guitars/$guitarId'
 import { Route as DemoStartServerFuncsRouteImport } from './routes/demo/start.server-funcs'
 import { Route as DemoStartApiRequestRouteImport } from './routes/demo/start.api-request'
@@ -34,9 +40,29 @@ import { Route as DemoStartSsrSpaModeRouteImport } from './routes/demo/start.ssr
 import { Route as DemoStartSsrFullSsrRouteImport } from './routes/demo/start.ssr.full-ssr'
 import { Route as DemoStartSsrDataOnlyRouteImport } from './routes/demo/start.ssr.data-only'
 
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const McpRoute = McpRouteImport.update({
   id: '/mcp',
   path: '/mcp',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DecksRoute = DecksRouteImport.update({
+  id: '/decks',
+  path: '/decks',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -84,10 +110,20 @@ const DemoDbChatRoute = DemoDbChatRouteImport.update({
   path: '/demo/db-chat',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DecksDecksIdRoute = DecksDecksIdRouteImport.update({
+  id: '/$decksId',
+  path: '/$decksId',
+  getParentRoute: () => DecksRoute,
+} as any)
 const ExampleGuitarsIndexRoute = ExampleGuitarsIndexRouteImport.update({
   id: '/example/guitars/',
   path: '/example/guitars/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const DecksCreateIndexRoute = DecksCreateIndexRouteImport.update({
+  id: '/create/',
+  path: '/create/',
+  getParentRoute: () => DecksRoute,
 } as any)
 const ExampleGuitarsGuitarIdRoute = ExampleGuitarsGuitarIdRouteImport.update({
   id: '/example/guitars/$guitarId',
@@ -157,7 +193,12 @@ const DemoStartSsrDataOnlyRoute = DemoStartSsrDataOnlyRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRoute
+  '/decks': typeof DecksRouteWithChildren
   '/mcp': typeof McpRoute
+  '/pricing': typeof PricingRoute
+  '/signup': typeof SignupRoute
+  '/decks/$decksId': typeof DecksDecksIdRoute
   '/demo/db-chat': typeof DemoDbChatRoute
   '/demo/db-chat-api': typeof DemoDbChatApiRoute
   '/demo/mcp-todos': typeof DemoMcpTodosRoute
@@ -175,6 +216,7 @@ export interface FileRoutesByFullPath {
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
   '/example/guitars/$guitarId': typeof ExampleGuitarsGuitarIdRoute
+  '/decks/create': typeof DecksCreateIndexRoute
   '/example/guitars': typeof ExampleGuitarsIndexRoute
   '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
   '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
@@ -183,7 +225,12 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRoute
+  '/decks': typeof DecksRouteWithChildren
   '/mcp': typeof McpRoute
+  '/pricing': typeof PricingRoute
+  '/signup': typeof SignupRoute
+  '/decks/$decksId': typeof DecksDecksIdRoute
   '/demo/db-chat': typeof DemoDbChatRoute
   '/demo/db-chat-api': typeof DemoDbChatApiRoute
   '/demo/mcp-todos': typeof DemoMcpTodosRoute
@@ -201,6 +248,7 @@ export interface FileRoutesByTo {
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
   '/example/guitars/$guitarId': typeof ExampleGuitarsGuitarIdRoute
+  '/decks/create': typeof DecksCreateIndexRoute
   '/example/guitars': typeof ExampleGuitarsIndexRoute
   '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
   '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
@@ -210,7 +258,12 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRoute
+  '/decks': typeof DecksRouteWithChildren
   '/mcp': typeof McpRoute
+  '/pricing': typeof PricingRoute
+  '/signup': typeof SignupRoute
+  '/decks/$decksId': typeof DecksDecksIdRoute
   '/demo/db-chat': typeof DemoDbChatRoute
   '/demo/db-chat-api': typeof DemoDbChatApiRoute
   '/demo/mcp-todos': typeof DemoMcpTodosRoute
@@ -228,6 +281,7 @@ export interface FileRoutesById {
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
   '/example/guitars/$guitarId': typeof ExampleGuitarsGuitarIdRoute
+  '/decks/create/': typeof DecksCreateIndexRoute
   '/example/guitars/': typeof ExampleGuitarsIndexRoute
   '/demo/start/ssr/data-only': typeof DemoStartSsrDataOnlyRoute
   '/demo/start/ssr/full-ssr': typeof DemoStartSsrFullSsrRoute
@@ -238,7 +292,12 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/dashboard'
+    | '/decks'
     | '/mcp'
+    | '/pricing'
+    | '/signup'
+    | '/decks/$decksId'
     | '/demo/db-chat'
     | '/demo/db-chat-api'
     | '/demo/mcp-todos'
@@ -256,6 +315,7 @@ export interface FileRouteTypes {
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
     | '/example/guitars/$guitarId'
+    | '/decks/create'
     | '/example/guitars'
     | '/demo/start/ssr/data-only'
     | '/demo/start/ssr/full-ssr'
@@ -264,7 +324,12 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/dashboard'
+    | '/decks'
     | '/mcp'
+    | '/pricing'
+    | '/signup'
+    | '/decks/$decksId'
     | '/demo/db-chat'
     | '/demo/db-chat-api'
     | '/demo/mcp-todos'
@@ -282,6 +347,7 @@ export interface FileRouteTypes {
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
     | '/example/guitars/$guitarId'
+    | '/decks/create'
     | '/example/guitars'
     | '/demo/start/ssr/data-only'
     | '/demo/start/ssr/full-ssr'
@@ -290,7 +356,12 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/dashboard'
+    | '/decks'
     | '/mcp'
+    | '/pricing'
+    | '/signup'
+    | '/decks/$decksId'
     | '/demo/db-chat'
     | '/demo/db-chat-api'
     | '/demo/mcp-todos'
@@ -308,6 +379,7 @@ export interface FileRouteTypes {
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
     | '/example/guitars/$guitarId'
+    | '/decks/create/'
     | '/example/guitars/'
     | '/demo/start/ssr/data-only'
     | '/demo/start/ssr/full-ssr'
@@ -317,7 +389,11 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DashboardRoute: typeof DashboardRoute
+  DecksRoute: typeof DecksRouteWithChildren
   McpRoute: typeof McpRoute
+  PricingRoute: typeof PricingRoute
+  SignupRoute: typeof SignupRoute
   DemoDbChatRoute: typeof DemoDbChatRoute
   DemoDbChatApiRoute: typeof DemoDbChatApiRoute
   DemoMcpTodosRoute: typeof DemoMcpTodosRoute
@@ -344,11 +420,39 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/mcp': {
       id: '/mcp'
       path: '/mcp'
       fullPath: '/mcp'
       preLoaderRoute: typeof McpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/decks': {
+      id: '/decks'
+      path: '/decks'
+      fullPath: '/decks'
+      preLoaderRoute: typeof DecksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -414,12 +518,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DemoDbChatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/decks/$decksId': {
+      id: '/decks/$decksId'
+      path: '/$decksId'
+      fullPath: '/decks/$decksId'
+      preLoaderRoute: typeof DecksDecksIdRouteImport
+      parentRoute: typeof DecksRoute
+    }
     '/example/guitars/': {
       id: '/example/guitars/'
       path: '/example/guitars'
       fullPath: '/example/guitars'
       preLoaderRoute: typeof ExampleGuitarsIndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/decks/create/': {
+      id: '/decks/create/'
+      path: '/create'
+      fullPath: '/decks/create'
+      preLoaderRoute: typeof DecksCreateIndexRouteImport
+      parentRoute: typeof DecksRoute
     }
     '/example/guitars/$guitarId': {
       id: '/example/guitars/$guitarId'
@@ -515,9 +633,25 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface DecksRouteChildren {
+  DecksDecksIdRoute: typeof DecksDecksIdRoute
+  DecksCreateIndexRoute: typeof DecksCreateIndexRoute
+}
+
+const DecksRouteChildren: DecksRouteChildren = {
+  DecksDecksIdRoute: DecksDecksIdRoute,
+  DecksCreateIndexRoute: DecksCreateIndexRoute,
+}
+
+const DecksRouteWithChildren = DecksRoute._addFileChildren(DecksRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DashboardRoute: DashboardRoute,
+  DecksRoute: DecksRouteWithChildren,
   McpRoute: McpRoute,
+  PricingRoute: PricingRoute,
+  SignupRoute: SignupRoute,
   DemoDbChatRoute: DemoDbChatRoute,
   DemoDbChatApiRoute: DemoDbChatApiRoute,
   DemoMcpTodosRoute: DemoMcpTodosRoute,

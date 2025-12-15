@@ -6,38 +6,70 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a **TanStack Start** full-stack React application with Prisma database integration, deployed to Vercel. It uses file-based routing, server-side rendering, and includes demo examples for TanStack ecosystem features.
 
+### Plan & Review
+
+### Before starting work
+
+- Write a plan to .claude/tasks/TASK_NAME.md.
+
+- The plan should be a detailed implementation plan and the reasoning behind them, as well as tasks broken down.
+
+- Don’t over plan it, always think MVP.
+
+- Once you write the plan, firstly ask me to review it. Do not continue until I approve the plan.
+
+### While implementing
+- Have to respect Clean code pratice & Clean Architecture.
+
+- Have to implant performance optimization
+
+- All Tests have to passed green
+
+- Have to respect RGAA, WCAG 2.2 web accessibility level minimun AA.
+
+- You should update the plan as you work.
+
+- After you complete tasks in the plan, you should update and append detailed descriptions of the changes you made, so following tasks can be easily hand over to other engineers.
+
+
 ## Development Commands
 
 ### Core Development
 ```bash
-npm run dev              # Start dev server on port 3000
-npm run build            # Build for production
-npm run preview          # Preview production build
-npm test                 # Run tests with Vitest
+ppnpm run dev              # Start dev server on port 3000
+pnpm run build            # Build for production
+pnpm run preview          # Preview production build
+pnpm test                 # Run tests with Vitest
 ```
 
 ### Linting & Formatting
 ```bash
-npm run lint             # Run Biome linter
-npm run format           # Format code with Biome
-npm run check            # Run all Biome checks
+pnpm run lint             # Run Biome linter
+pnpm run format           # Format code with Biome
+pnpm run check            # Run all Biome checks
 ```
 
 ### Database Operations
 All Prisma commands require `.env.local` with `DATABASE_URL`:
 
 ```bash
-npm run db:generate      # Generate Prisma client
-npm run db:push          # Push schema to database (no migrations)
-npm run db:migrate       # Create and run migrations
-npm run db:studio        # Open Prisma Studio GUI
-npm run db:seed          # Seed database with example data
+pnpm run db:generate      # Generate Prisma client
+pnpm run db:push          # Push schema to database (no migrations)
+pnpm run db:migrate       # Create and run migrations
+pnpm run db:studio        # Open Prisma Studio GUI
+pnpm run db:seed          # Seed database with example data
 ```
 
 ### UI Components
 ```bash
 pnpm dlx shadcn@latest add <component>  # Add Shadcn components
 ```
+### Directory Structure
+
+The project follows a domain-driven architecture pattern with **SOLID principles** and **Dependency Injection**:
+
+### Domain Structure
+
 
 ## Architecture
 
@@ -63,7 +95,7 @@ The router is created in `src/router.tsx` with TanStack Query SSR integration:
 - Client generated to `src/generated/prisma/` (custom output location)
 - Uses PostgreSQL adapter (`@prisma/adapter-pg`)
 - Global singleton pattern in `src/db.ts` prevents connection pool exhaustion
-- Seed file: `prisma/seed.ts` (run with `npm run db:seed`)
+- Seed file: `prisma/seed.ts` (run with `pnpm run db:seed`)
 
 #### 3. TanStack Query Integration
 - Query client created in `src/integrations/tanstack-query/root-provider.tsx`
@@ -91,8 +123,9 @@ All TanStack devtools unified in `__root.tsx`:
 
 ### Environment Variables
 Required in `.env.local`:
-- `DATABASE_URL`: PostgreSQL connection string
-- `ANTHROPIC_API_KEY`: For AI features (optional)
+- `DATABASE_URL`: PostgreSQL connection string (required for Prisma)
+- `BASE_URL`: Application base URL (default: `http://localhost:3000`)
+- `ANTHROPIC_API_KEY`: For AI chat features (optional)
 
 ### Path Aliases
 `@/*` maps to `src/*` (configured in `tsconfig.json` + `vite-tsconfig-paths`)
