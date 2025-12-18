@@ -10,6 +10,7 @@ import { formOpts } from "./signup-isomorphic";
 const serverValidate = createServerValidate({
 	...formOpts,
 	onServerValidate: ({ value }) => {
+		console.log("Server validating", value);
 		if (value.password !== value.confirmPassword) {
 			return "Server validation: Passwords do not match";
 		}
