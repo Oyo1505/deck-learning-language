@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SignupRouteImport } from './routes/signup'
+import { Route as SigninRouteImport } from './routes/signin'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as McpRouteImport } from './routes/mcp'
 import { Route as DecksRouteImport } from './routes/decks'
@@ -35,6 +36,7 @@ import { Route as DemoApiTqTodosRouteImport } from './routes/demo/api.tq-todos'
 import { Route as DemoApiTanchatRouteImport } from './routes/demo/api.tanchat'
 import { Route as DemoApiNamesRouteImport } from './routes/demo/api.names'
 import { Route as DemoApiMcpTodosRouteImport } from './routes/demo/api.mcp-todos'
+import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 import { Route as DemoStartSsrIndexRouteImport } from './routes/demo/start.ssr.index'
 import { Route as DemoStartSsrSpaModeRouteImport } from './routes/demo/start.ssr.spa-mode'
 import { Route as DemoStartSsrFullSsrRouteImport } from './routes/demo/start.ssr.full-ssr'
@@ -43,6 +45,11 @@ import { Route as DemoStartSsrDataOnlyRouteImport } from './routes/demo/start.ss
 const SignupRoute = SignupRouteImport.update({
   id: '/signup',
   path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SigninRoute = SigninRouteImport.update({
+  id: '/signin',
+  path: '/signin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PricingRoute = PricingRouteImport.update({
@@ -170,6 +177,11 @@ const DemoApiMcpTodosRoute = DemoApiMcpTodosRouteImport.update({
   path: '/demo/api/mcp-todos',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
+  id: '/api/auth/$',
+  path: '/api/auth/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DemoStartSsrIndexRoute = DemoStartSsrIndexRouteImport.update({
   id: '/demo/start/ssr/',
   path: '/demo/start/ssr/',
@@ -197,6 +209,7 @@ export interface FileRoutesByFullPath {
   '/decks': typeof DecksRouteWithChildren
   '/mcp': typeof McpRoute
   '/pricing': typeof PricingRoute
+  '/signin': typeof SigninRoute
   '/signup': typeof SignupRoute
   '/decks/$decksId': typeof DecksDecksIdRoute
   '/demo/db-chat': typeof DemoDbChatRoute
@@ -207,6 +220,7 @@ export interface FileRoutesByFullPath {
   '/demo/table': typeof DemoTableRoute
   '/demo/tanchat': typeof DemoTanchatRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
   '/demo/api/mcp-todos': typeof DemoApiMcpTodosRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/api/tanchat': typeof DemoApiTanchatRoute
@@ -229,6 +243,7 @@ export interface FileRoutesByTo {
   '/decks': typeof DecksRouteWithChildren
   '/mcp': typeof McpRoute
   '/pricing': typeof PricingRoute
+  '/signin': typeof SigninRoute
   '/signup': typeof SignupRoute
   '/decks/$decksId': typeof DecksDecksIdRoute
   '/demo/db-chat': typeof DemoDbChatRoute
@@ -239,6 +254,7 @@ export interface FileRoutesByTo {
   '/demo/table': typeof DemoTableRoute
   '/demo/tanchat': typeof DemoTanchatRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
   '/demo/api/mcp-todos': typeof DemoApiMcpTodosRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/api/tanchat': typeof DemoApiTanchatRoute
@@ -262,6 +278,7 @@ export interface FileRoutesById {
   '/decks': typeof DecksRouteWithChildren
   '/mcp': typeof McpRoute
   '/pricing': typeof PricingRoute
+  '/signin': typeof SigninRoute
   '/signup': typeof SignupRoute
   '/decks/$decksId': typeof DecksDecksIdRoute
   '/demo/db-chat': typeof DemoDbChatRoute
@@ -272,6 +289,7 @@ export interface FileRoutesById {
   '/demo/table': typeof DemoTableRoute
   '/demo/tanchat': typeof DemoTanchatRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
   '/demo/api/mcp-todos': typeof DemoApiMcpTodosRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/api/tanchat': typeof DemoApiTanchatRoute
@@ -296,6 +314,7 @@ export interface FileRouteTypes {
     | '/decks'
     | '/mcp'
     | '/pricing'
+    | '/signin'
     | '/signup'
     | '/decks/$decksId'
     | '/demo/db-chat'
@@ -306,6 +325,7 @@ export interface FileRouteTypes {
     | '/demo/table'
     | '/demo/tanchat'
     | '/demo/tanstack-query'
+    | '/api/auth/$'
     | '/demo/api/mcp-todos'
     | '/demo/api/names'
     | '/demo/api/tanchat'
@@ -328,6 +348,7 @@ export interface FileRouteTypes {
     | '/decks'
     | '/mcp'
     | '/pricing'
+    | '/signin'
     | '/signup'
     | '/decks/$decksId'
     | '/demo/db-chat'
@@ -338,6 +359,7 @@ export interface FileRouteTypes {
     | '/demo/table'
     | '/demo/tanchat'
     | '/demo/tanstack-query'
+    | '/api/auth/$'
     | '/demo/api/mcp-todos'
     | '/demo/api/names'
     | '/demo/api/tanchat'
@@ -360,6 +382,7 @@ export interface FileRouteTypes {
     | '/decks'
     | '/mcp'
     | '/pricing'
+    | '/signin'
     | '/signup'
     | '/decks/$decksId'
     | '/demo/db-chat'
@@ -370,6 +393,7 @@ export interface FileRouteTypes {
     | '/demo/table'
     | '/demo/tanchat'
     | '/demo/tanstack-query'
+    | '/api/auth/$'
     | '/demo/api/mcp-todos'
     | '/demo/api/names'
     | '/demo/api/tanchat'
@@ -393,6 +417,7 @@ export interface RootRouteChildren {
   DecksRoute: typeof DecksRouteWithChildren
   McpRoute: typeof McpRoute
   PricingRoute: typeof PricingRoute
+  SigninRoute: typeof SigninRoute
   SignupRoute: typeof SignupRoute
   DemoDbChatRoute: typeof DemoDbChatRoute
   DemoDbChatApiRoute: typeof DemoDbChatApiRoute
@@ -402,6 +427,7 @@ export interface RootRouteChildren {
   DemoTableRoute: typeof DemoTableRoute
   DemoTanchatRoute: typeof DemoTanchatRoute
   DemoTanstackQueryRoute: typeof DemoTanstackQueryRoute
+  ApiAuthSplatRoute: typeof ApiAuthSplatRoute
   DemoApiMcpTodosRoute: typeof DemoApiMcpTodosRoute
   DemoApiNamesRoute: typeof DemoApiNamesRoute
   DemoApiTanchatRoute: typeof DemoApiTanchatRoute
@@ -425,6 +451,13 @@ declare module '@tanstack/react-router' {
       path: '/signup'
       fullPath: '/signup'
       preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signin': {
+      id: '/signin'
+      path: '/signin'
+      fullPath: '/signin'
+      preLoaderRoute: typeof SigninRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pricing': {
@@ -602,6 +635,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DemoApiMcpTodosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/auth/$': {
+      id: '/api/auth/$'
+      path: '/api/auth/$'
+      fullPath: '/api/auth/$'
+      preLoaderRoute: typeof ApiAuthSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/demo/start/ssr/': {
       id: '/demo/start/ssr/'
       path: '/demo/start/ssr'
@@ -651,6 +691,7 @@ const rootRouteChildren: RootRouteChildren = {
   DecksRoute: DecksRouteWithChildren,
   McpRoute: McpRoute,
   PricingRoute: PricingRoute,
+  SigninRoute: SigninRoute,
   SignupRoute: SignupRoute,
   DemoDbChatRoute: DemoDbChatRoute,
   DemoDbChatApiRoute: DemoDbChatApiRoute,
@@ -660,6 +701,7 @@ const rootRouteChildren: RootRouteChildren = {
   DemoTableRoute: DemoTableRoute,
   DemoTanchatRoute: DemoTanchatRoute,
   DemoTanstackQueryRoute: DemoTanstackQueryRoute,
+  ApiAuthSplatRoute: ApiAuthSplatRoute,
   DemoApiMcpTodosRoute: DemoApiMcpTodosRoute,
   DemoApiNamesRoute: DemoApiNamesRoute,
   DemoApiTanchatRoute: DemoApiTanchatRoute,
