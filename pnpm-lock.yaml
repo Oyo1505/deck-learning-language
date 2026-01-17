@@ -50,6 +50,9 @@ importers:
       '@tanstack/ai-react':
         specifier: ^0.0.1
         version: 0.0.1(@tanstack/ai-client@0.0.1(@alcyone-labs/zod-to-json-schema@4.0.10(zod@4.3.5))(zod@4.3.5))(@tanstack/ai@0.0.1(@alcyone-labs/zod-to-json-schema@4.0.10(zod@4.3.5))(zod@4.3.5))(@types/react@19.2.8)(react@19.2.3)
+      '@tanstack/db':
+        specifier: ^0.5.12
+        version: 0.5.20(typescript@5.9.3)
       '@tanstack/match-sorter-utils':
         specifier: ^8.19.4
         version: 8.19.4
