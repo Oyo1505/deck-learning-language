@@ -6,6 +6,16 @@ import { defineConfig } from 'vite'
 import viteTsConfigPaths from 'vite-tsconfig-paths'
 
 const config = defineConfig({
+   optimizeDeps: {
+    // Exclude TanStack Start packages from Vite's dependency optimization
+    // to prevent issues with virtual imports (#tanstack-router-entry, etc.)
+    exclude: [
+      '@tanstack/start-server-core',
+      '@tanstack/react-start',
+      '@tanstack/react-start/client',
+      '@tanstack/react-start/server',
+    ],
+  },
   plugins: [
     devtools(),
     // this is the plugin that enables path aliases
@@ -14,6 +24,7 @@ const config = defineConfig({
     }),
     tailwindcss(),
     tanstackStart(),
+    
     viteReact({
       babel: {
         plugins: ['babel-plugin-react-compiler'],
